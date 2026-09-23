@@ -1,0 +1,37 @@
+import java.util.*;
+
+class Main {
+
+    public static List<Integer> leaders(int[] nums) {
+
+        List<Integer> leaders = new ArrayList<>();
+
+        // Rightmost element is always a leader
+        int max = nums[nums.length - 1];
+        leaders.add(max);
+
+        // Traverse from right to left
+        for (int i = nums.length - 2; i >= 0; i--) {
+
+            if (nums[i] > max) {
+                leaders.add(nums[i]);
+                max = nums[i];
+            }
+        }
+
+        // We found leaders from right to left,
+        // so reverse them
+        Collections.reverse(leaders);
+
+        return leaders;
+    }
+
+    public static void main(String[] args) {
+
+        int[] nums = {10, 22, 12, 3, 0, 6};
+
+        List<Integer> result = leaders(nums);
+
+        System.out.println(result);
+    }
+}
